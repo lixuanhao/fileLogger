@@ -85,7 +85,7 @@ func (f *FileLogger) Println(v ...interface{}) {
 func (f *FileLogger) Trace(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(2) //calldepth=3
 	if f.logLevel <= TRACE {
-		f.logChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[32m[TRACE] "+format+" \033[0m ", v...)
+		f.logChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[32m[TRACE]\033[0m "+format, v...)
 	}
 }
 
@@ -98,7 +98,7 @@ func (f *FileLogger) T(format string, v ...interface{}) {
 func (f *FileLogger) Info(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(2) //calldepth=3
 	if f.logLevel <= INFO {
-		f.logChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[INFO] "+format+" \033[0m ", v...)
+		f.logChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[INFO]\033[0m "+format, v...)
 	}
 }
 
@@ -111,7 +111,7 @@ func (f *FileLogger) I(format string, v ...interface{}) {
 func (f *FileLogger) Warn(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(2) //calldepth=3
 	if f.logLevel <= WARN {
-		f.logChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;33m[WARN] "+format+" \033[0m ", v...)
+		f.logChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;33m[WARN]\033[0m "+format, v...)
 	}
 }
 
@@ -124,7 +124,7 @@ func (f *FileLogger) W(format string, v ...interface{}) {
 func (f *FileLogger) Error(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(2) //calldepth=3
 	if f.logLevel <= ERROR {
-		f.logChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[ERROR] "+format+" \033[0m ", v...)
+		f.logChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[ERROR]\033[0m "+format, v...)
 	}
 }
 
